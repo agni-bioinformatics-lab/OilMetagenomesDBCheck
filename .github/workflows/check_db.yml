@@ -1,4 +1,5 @@
 name: check DB
+run-name: ${{ github.actor }} is learning GitHub Actions
 on:
   pull_request:
     types: [opened]
