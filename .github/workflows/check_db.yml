@@ -2,3 +2,7 @@ name: check DB
 on:
   pull_request:
     types: [opened]
+jobs:
+  build:
+    name: check DB
+    runs-on: ubuntu-latest
