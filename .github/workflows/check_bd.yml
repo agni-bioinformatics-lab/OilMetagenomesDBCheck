@@ -1,1 +1,4 @@
-name: check_bd
+name: check DB
+on:
+  pull_request:
+    types: [opened]
