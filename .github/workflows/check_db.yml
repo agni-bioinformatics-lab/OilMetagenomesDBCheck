@@ -1,9 +1,26 @@
-name: check DB
-run-name: ${{ github.actor }} is learning GitHub Actions
-on:
+# this workflow is used by every pull request
+
+# имя, чтобы отображалось в интерфейсе
+name: check table columns
+# тут список событий, на который экшен должен запускаться
+on: 
+  # пусть гоняется на пулл-реквест
   pull_request:
-    types: [opened]
+# список того, что нужно делать
+# каждый job будет выводиться отдельным элементом слева UI
 jobs:
-  build:
-    name: check DB
-    runs-on: ubuntu-latest
+  # уникальное имя элемента слева UI
+  test-job:
+    # указываем на какое машине гоняем
+    runs-on: ubuntu-20.04
+    # список упорядоченных шагов, которые будут последовательно выполняться
+    steps:
+      # checkout делает pull репозитория и ветки, в котором запущен. Таким образом мы получаем доступ к коду
+      - uses: actions/checkout@v3
+      # setup-python устанавливает Py
+      - uses: actions/setup-python@v4
+        # передаем параметры при установке данного экшена
+        with:
+          python-version: "3.9"
+          architecture: "x64"
+      - name: # далее нужно создать Py пакет
